@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World with jQuery</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #f5f5f5;
+      font-family: Arial, sans-serif;
+    }
+    #message {
+      font-size: 2rem;
+      color: #333;
+      display: none; /* hidden at first */
+    }
+  </style>
+</head>
+<body>
+  <div id="message">Hello World!!!</div>
+
+  <script>
+    $(document).ready(function(){
+      function animateMessage() {
+        $("#message")
+          .fadeIn(1000)                     // fade in
+          .animate({ fontSize: "3rem" }, 1000)  // grow text
+          .delay(1000)                      // wait
+          .fadeOut(1000, function() {       // fade out
+            $(this).css("font-size", "2rem"); // reset font size
+            animateMessage();               // repeat animation
+          });
+      }
+      animateMessage(); // start animation loop
+    });
+  </script>
+</body>
+</html>
