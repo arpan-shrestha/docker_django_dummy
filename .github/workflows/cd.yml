@@ -1,0 +1,21 @@
+name: Django CD
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v3
+
+            - name: Install Railway
+              run: npm install -g railway
+
+            - name: Deploy to Railway
+              env:
+                RAILWAY_TOKEN: ${{secrets.RAILWAY_TOKEN}}
+              run: railway up --detach
